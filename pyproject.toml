@@ -1,6 +1,6 @@
 [project]
 name = "mc3forge-community"
-version = "0.1.0"
+version = "0.1.1"
 description = "Experimental Midnight Club 3 equipment addon: source/developer preview"
 requires-python = ">=3.12"
 dependencies = []

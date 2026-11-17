@@ -1,6 +1,6 @@
 # MC3Forge Community
 
-**v0.1.0-preview — first public source/developer preview. No ready-to-play emulator binary is included.**
+**v0.1.1-preview — public source/developer preview. No ready-to-play emulator binary is included.**
 
 An experimental loot-and-equipment addon for the **PS2 version of Midnight Club 3: DUB Edition Remix with VIP 1.1-A**. Earn parts, assemble an eight-slot build, compare replacements, and reroll affixes through an in-renderer equipment menu inspired by action RPGs. MC3Forge is independent community work, developed with AI assistance, and is not an official Rockstar, VIP, PCSX2 or Team Ninja release.
 

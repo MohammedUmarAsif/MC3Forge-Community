@@ -12,6 +12,8 @@ import sys
 import time
 from pathlib import Path
 
+from profile_lock import lock_profile
+
 ROOT = Path(__file__).resolve().parents[1]
 PLAY = ROOT / ".local/play"
 sys.path.insert(0, str(ROOT / "runtime"))
@@ -126,15 +128,12 @@ def run(*, experimental: bool) -> None:
         raise ValueError(
             "This preview writes gameplay and wallet state in its copied profile. Add --experimental to run."
         )
-    import msvcrt
-
     if not (PLAY / "launch.json").is_file() or not has_addon(PLAY / "pcsx2-qt.exe"):
         raise ValueError("Run setup first")
     if not PLAY.resolve().is_relative_to(ROOT.resolve()):
         raise ValueError("Redirected profile refused")
     with (PLAY / "MC3Forge.lock").open("a+b") as lock:
-        lock.seek(0)
-        msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+        lock_profile(lock)
         config = configparser.ConfigParser(interpolation=None)
         config.read(PLAY / "inis/PCSX2.ini", encoding="utf-8")
         if (

@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.1-preview — 17 November 2026
+
+Fix Linux source-CI type checking of Windows-only profile locks. The portable gameplay launcher remains Windows-only and now reports that explicitly. Hosted CI exposed this after the first public tag; its history is preserved, and this patch supersedes it.
+
 ## v0.1.0-preview — 17 November 2026
 
 First clean public source/developer export, separate from private research history.

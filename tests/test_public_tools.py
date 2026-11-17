@@ -58,6 +58,15 @@ def test_setup_refuses_existing_profile(tmp_path, monkeypatch):
     assert saved.read_text() == "existing"
 
 
+def test_profile_lock_rejects_non_windows(tmp_path, monkeypatch):
+    import profile_lock
+
+    monkeypatch.setattr(profile_lock.sys, "platform", "linux")
+    with (tmp_path / "lock").open("a+b") as lock:
+        with pytest.raises(ValueError, match="Windows only"):
+            profile_lock.lock_profile(lock)
+
+
 def test_setup_copies_inputs_without_modifying_originals(tmp_path, monkeypatch):
     import hashlib
     import json

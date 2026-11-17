@@ -7,6 +7,8 @@ import sys
 import uuid
 from pathlib import Path
 
+from profile_lock import lock_profile
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "runtime"))
 from lootlab.schema_v2 import EQUIPMENT_SLOTS, Affix, Item  # noqa: E402
@@ -58,16 +60,13 @@ def grant(pipe: NativeLoot) -> dict:
 
 
 if __name__ == "__main__":
-    import msvcrt
-
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runtime", type=Path, default=ROOT / ".local/play")
     args = parser.parse_args()
     if not (args.runtime / "portable.ini").is_file():
         parser.error("Run player.py setup first")
     with (args.runtime / "MC3Forge.lock").open("a+b") as lock:
-        lock.seek(0)
-        msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+        lock_profile(lock)
         result = grant(NativeLoot(args.runtime, inventory_mode=True))
         print(
             "DEV pack already exists; no duplicates added."
