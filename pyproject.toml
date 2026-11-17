@@ -1,0 +1,23 @@
+[project]
+name = "mc3forge-community"
+version = "0.1.0"
+description = "Experimental Midnight Club 3 equipment addon: source/developer preview"
+requires-python = ">=3.12"
+dependencies = []
+license = "GPL-3.0-or-later"
+
+[dependency-groups]
+dev = ["pytest>=9.1.1", "ruff>=0.16.9", "ty>=0.0.84"]
+
+[tool.pytest.ini_options]
+pythonpath = ["runtime", "tools", "tests"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ty.environment]
+extra-paths = ["runtime", "tools"]
